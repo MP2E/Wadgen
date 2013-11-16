@@ -114,7 +114,7 @@ cache Png_Create(int width, int height, int numpal, dPalette_t* pal,
 		PNG_FILTER_TYPE_DEFAULT);
 
 	// setup palette
-	palette = (png_colorp)Mem_Alloc((16 * numpal) * png_sizeof(png_color));
+	palette = (png_colorp)Mem_Alloc((16 * numpal) * sizeof(png_color));
 
 	// copy dPalette_t data over to png_colorp
 	for(x = 0, j = 0; x < numpal; x++)
