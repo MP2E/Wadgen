@@ -7,25 +7,25 @@ find_package(PNG REQUIRED)
 include_directories(${PNG_INCLUDE_DIR})
 
 add_executable(WadGen
-	src/DeflateN64.c
-	src/Files.c
-	src/Gfx.c
-	src/Level.c
-	src/Mem.c
-	src/Png.c
-	src/MD5.c
-	src/Rom.c
-	src/SndFont.c
-	src/Sound.c
-	src/Sprite.c
-	src/Texture.c
-	src/Wad.c
-	src/WadGen.c
+    src/deflate-N64.c
+    src/files.c
+    src/gfx.c
+    src/level.c
+    src/mem.c
+    src/png.c
+    src/MD5.c
+    src/rom.c
+    src/sndfont.c
+    src/sound.c
+    src/sprite.c
+    src/texture.c
+    src/wad.c
+    src/wadgen.c
 )
 
 target_link_libraries(WadGen ${ZLIB_LIBRARY} ${PNG_LIBRARY})
 if(WIN32)
-	target_link_libraries(WadGen comctl32)
-elseif()
-	target_link_libraries(m)
+    target_link_libraries(WadGen comctl32)
+else()
+    target_link_libraries(WadGen m)
 endif()
