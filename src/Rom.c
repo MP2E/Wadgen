@@ -176,18 +176,18 @@ void Rom_SwapBigEndian(int swaptype)
     // v64
     if(swaptype == 3)
     {
-        short* swap;
-
-        for(swap = (short*)RomFile.data, len = 0; len < RomFile.length / 2; len++)
-            swap[len] = _SWAP16(swap[len]);
-    }
-    // n64
-    else if(swaptype == 2)
-    {
         int* swap;
 
         for(swap = (int*)RomFile.data, len = 0; len < RomFile.length / 4; len++)
             swap[len] = _SWAP32(swap[len]);
+    }
+    // n64
+    else if(swaptype == 2)
+    {
+        short* swap;
+
+        for(swap = (short*)RomFile.data, len = 0; len < RomFile.length / 2; len++)
+            swap[len] = _SWAP16(swap[len]);
     }
     // z64 (do nothing)
 }
