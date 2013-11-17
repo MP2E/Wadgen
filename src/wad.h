@@ -1,10 +1,10 @@
 #ifndef _WADGEN_WAD_H_
 #define _WADGEN_WAD_H_
 
-#include "Sprite.h"
-#include "Gfx.h"
-#include "Texture.h"
-#include "Sound.h"
+#include "sprite.h"
+#include "gfx.h"
+#include "texture.h"
+#include "sound.h"
 
 #define MAX_LUMPS	4096
 

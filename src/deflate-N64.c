@@ -28,7 +28,7 @@
 static const char rcsid[] = "$Id: DeflateN64.c 922 2011-08-13 00:49:06Z svkaiser $";
 #endif
 
-#include "WadGen.h"
+#include "wadgen.h"
 
 typedef struct
 {

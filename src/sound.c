@@ -29,12 +29,12 @@
 static const char rcsid[] = "$Id: Sound.c 1096 2012-03-31 18:28:01Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Rom.h"
-#include "Sound.h"
+#include "wadgen.h"
+#include "rom.h"
+#include "sound.h"
 
 #ifdef USE_SOUNDFONTS
-#include "SndFont.h"
+#include "sndfont.h"
 #endif
 
 #define ROM_SNDTITLE 0x34364E53     // SN64

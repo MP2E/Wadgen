@@ -1,7 +1,7 @@
 // Emacs style mode select	 -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: Wad.c 1150 2012-06-11 00:18:31Z svkaiser $
+// $Id: wad.c 1150 2012-06-11 00:18:31Z svkaiser $
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,14 +26,14 @@
 //
 //-----------------------------------------------------------------------------
 #ifdef RCSID
-static const char rcsid[] = "$Id: Wad.c 1150 2012-06-11 00:18:31Z svkaiser $";
+static const char rcsid[] = "$Id: wad.c 1150 2012-06-11 00:18:31Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Rom.h"
-#include "Wad.h"
-#include "Files.h"
-#include "DeflateN64.h"
+#include "wadgen.h"
+#include "rom.h"
+#include "wad.h"
+#include "files.h"
+#include "deflate-N64.h"
 
 #define ROM_IWADTITLE	0x44415749	// IWAD
 

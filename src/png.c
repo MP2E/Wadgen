@@ -28,9 +28,9 @@
 static const char rcsid[] = "$Id: Png.c 922 2011-08-13 00:49:06Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Wad.h"
-#include "Sprite.h"
+#include "wadgen.h"
+#include "wad.h"
+#include "sprite.h"
 
 #ifdef USE_PNG
 

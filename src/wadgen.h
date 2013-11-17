@@ -28,7 +28,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-#include "Mem.h"
+#include "mem.h"
 
 #ifdef PLATFORM_PC
 

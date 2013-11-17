@@ -32,10 +32,10 @@ static const char rcsid[] = "$Id: SndFont.c 1096 2012-03-31 18:28:01Z svkaiser $
 
 #include <math.h>
 
-#include "WadGen.h"
-#include "Files.h"
-#include "Sound.h"
-#include "SndFont.h"
+#include "wadgen.h"
+#include "files.h"
+#include "sound.h"
+#include "sndfont.h"
 
 #define SF_NEWITEM(p, t, c) p = (t*)realloc((t*)p, sizeof(t) * ++c);
 

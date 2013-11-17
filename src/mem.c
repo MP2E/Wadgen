@@ -28,7 +28,7 @@
 static const char rcsid[] = "$Id: Mem.c 744 2010-08-01 05:13:52Z svkaiser $";
 #endif
 
-#include "WadGen.h"
+#include "wadgen.h"
 #include <stdlib.h>
 
 //**************************************************************

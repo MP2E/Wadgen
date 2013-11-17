@@ -23,7 +23,7 @@
 #ifndef MD5_H
 #define MD5_H
 
-#include "WadGen.h"
+#include "wadgen.h"
 
 #ifdef HAVE_STDINT_H
 #include <stdint.h>

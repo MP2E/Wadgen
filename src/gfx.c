@@ -28,11 +28,11 @@
 static const char rcsid[] = "$Id: Gfx.c 1096 2012-03-31 18:28:01Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Rom.h"
-#include "Wad.h"
-#include "Texture.h"
-#include "Gfx.h"
+#include "wadgen.h"
+#include "rom.h"
+#include "wad.h"
+#include "texture.h"
+#include "gfx.h"
 
 gfxEx_t gfxEx[MAXGFXEXITEMS];
 gfxRom_t gfxRom[MAXGFXEXITEMS];
