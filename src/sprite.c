@@ -1,7 +1,7 @@
 // Emacs style mode select	 -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: Sprite.c 1096 2012-03-31 18:28:01Z svkaiser $
+// $Id: sprite.c 1096 2012-03-31 18:28:01Z svkaiser $
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,13 +26,13 @@
 //
 //-----------------------------------------------------------------------------
 #ifdef RCSID
-static const char rcsid[] = "$Id: Sprite.c 1096 2012-03-31 18:28:01Z svkaiser $";
+static const char rcsid[] = "$Id: sprite.c 1096 2012-03-31 18:28:01Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Sprite.h"
-#include "Rom.h"
-#include "Wad.h"
+#include "wadgen.h"
+#include "sprite.h"
+#include "rom.h"
+#include "wad.h"
 
 d64ExSpriteLump_t exSpriteLump[MAX_SPRITES];
 d64PaletteLump_t d64PaletteLump[24];

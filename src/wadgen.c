@@ -1,7 +1,7 @@
 // Emacs style mode select	 -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: WadGen.c 1230 2013-03-04 06:18:10Z svkaiser $
+// $Id: wadgen.c 1230 2013-03-04 06:18:10Z svkaiser $
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,15 +25,15 @@
 //
 //-----------------------------------------------------------------------------
 #ifdef RCSID
-static const char rcsid[] = "$Id: WadGen.c 1230 2013-03-04 06:18:10Z svkaiser $";
+static const char rcsid[] = "$Id: wadgen.c 1230 2013-03-04 06:18:10Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Files.h"
-#include "Rom.h"
-#include "Wad.h"
-#include "Level.h"
-#include "SndFont.h"
+#include "wadgen.h"
+#include "files.h"
+#include "rom.h"
+#include "wad.h"
+#include "level.h"
+#include "sndfont.h"
 
 #include <stdarg.h>
 

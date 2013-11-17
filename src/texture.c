@@ -1,7 +1,7 @@
 // Emacs style mode select	 -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
-// $Id: Texture.c 1096 2012-03-31 18:28:01Z svkaiser $
+// $Id: texture.c 1096 2012-03-31 18:28:01Z svkaiser $
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@
 static const char rcsid[] = "$Id: Texture.c 1096 2012-03-31 18:28:01Z svkaiser $";
 #endif
 
-#include "WadGen.h"
-#include "Wad.h"
-#include "Texture.h"
+#include "wadgen.h"
+#include "wad.h"
+#include "texture.h"
 
 static d64RawTexture_t d64RomTexture[MAXTEXTURES];
 d64ExTexture_t d64ExTexture[MAXTEXTURES];
