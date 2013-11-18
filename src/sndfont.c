@@ -463,7 +463,7 @@ void SF_WriteSoundFont(void)
     int i;
     path outFile;
 
-    sprintf(outFile, "%s/DOOMSND.SF2", wgenfile.basePath);
+    sprintf(outFile, "%s/doomsnd.sf2", wgenfile.basePath);
 	handle = File_Open(outFile);
 
     File_Write(handle, soundfont.RIFF, 4);
@@ -608,10 +608,10 @@ void SF_Setup(void)
     //
     // name
     //
-    soundfont.name.size = strlen("DOOMSND.SF2") + 1;
+    soundfont.name.size = strlen("doomsnd.sf2") + 1;
     _PAD4(soundfont.name.size);
     soundfont.name.name = (char*)Mem_Alloc(soundfont.name.size);
-    strncpy(soundfont.name.name, "DOOMSND.SF2", soundfont.name.size);
+    strncpy(soundfont.name.name, "doomsnd.sf2", soundfont.name.size);
 
     //
     // initalize chunks
