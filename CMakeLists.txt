@@ -23,9 +23,8 @@ add_executable(WadGen
     src/wadgen.c
 )
 
-target_link_libraries(WadGen ${ZLIB_LIBRARY} ${PNG_LIBRARY})
 if(WIN32)
-    target_link_libraries(WadGen comctl32)
+    target_link_libraries(WadGen ${PNG_LIBRARY} ${ZLIB_LIBRARY} comctl32)
 else()
-    target_link_libraries(WadGen m)
+    target_link_libraries(WadGen ${PNG_LIBRARY} ${ZLIB_LIBRARY} m)
 endif()
