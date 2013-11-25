@@ -131,32 +131,24 @@ void Wad_Decompress(byte *input, byte *output)
 
 int Wad_CheckLump (const char* name)
 {
-    union 
-	{
-		char	s[9];
-		int		x[2];
+    char tempname[9] = {0};
+    lump_t* lump_p;
+    char first;
 
-    } name8;
+    strncpy(tempname, name, 8);
+    strupr (tempname);
 
-    int		v1;
-    int		v2;
-    lump_t*	lump_p;
-
-    strncpy (name8.s,name,8);
-    name8.s[8] = 0;
-    strupr (name8.s);
-
-    v1 = name8.x[0];
-    v2 = name8.x[1];
+    first = tempname[0];
 
     lump_p = romWadFile.lump + romWadFile.header.lmpcount;
 
     while(lump_p-- != romWadFile.lump) 
-	{
-		if(*(int *)lump_p->name == (v1 | (*(int *)lump_p->name & 0x80)) && 
-			*(int *)&lump_p->name[4] == v2) 
-			return lump_p - romWadFile.lump;
-	}
+        {
+	    tempname[0] |= (lump_p->name[0] & 0x80);
+	    if(!strncmp(lump_p->name, tempname, 8))
+                return lump_p - romWadFile.lump;
+            tempname[0] = first;
+        }
 
     return -1;
 }
