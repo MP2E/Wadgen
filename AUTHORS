@@ -9,5 +9,11 @@ Creator of Doom64 EX ("kex-engine") & Author of Wadgen
 Cray 'MP2E' Elliott
 Creator of Kex+
 
+James 'Quasar' Haley
+Bugfixes & Testing
+
 David 'DavidPH' Hill
 Bugfixes for the CMake build system
+
+Mike 'chungy' Swanson
+Bugfixes for Linux quality-of-life

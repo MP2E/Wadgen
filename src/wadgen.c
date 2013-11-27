@@ -252,7 +252,7 @@ void WGen_Process(void)
     Wad_AddOutputLump("ENDOFWAD", 0, NULL);
     
     WGen_UpdateProgress("Writing IWAD File...");
-    sprintf(outFile, "%s/DOOM64.WAD", wgenfile.basePath);
+    sprintf(outFile, "%s/doom64.wad", wgenfile.basePath);
     Wad_WriteOutput(outFile);
     
     // Done
