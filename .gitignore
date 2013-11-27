@@ -38,6 +38,7 @@ ehthumbs.db
 Thumbs.db
 
 # Build directory
+
 build
 
 # Ctags
