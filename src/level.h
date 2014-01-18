@@ -6,6 +6,6 @@
 extern cache levelData[MAXLEVELWADS];
 extern int levelSize[MAXLEVELWADS];
 
-void Level_Setup(void);
+void Level_Setup (void);
 
 #endif
