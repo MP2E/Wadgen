@@ -54,10 +54,10 @@ typedef char path[MAX_PATH];
 #define true	1
 
 typedef struct {
-    byte r;
-    byte g;
-    byte b;
-    byte a;
+	byte r;
+	byte g;
+	byte b;
+	byte a;
 } dPalette_t;
 
 #ifdef _WIN32
@@ -67,8 +67,8 @@ extern HWND hwndWait;
 extern int myargc;
 extern char **myargv;
 
-int WGen_Swap16 (int x);
-uint WGen_Swap32 (unsigned int x);
+int WGen_Swap16(int x);
+uint WGen_Swap32(unsigned int x);
 
 #define	_SWAP16(x)	WGen_Swap16(x)
 #define _SWAP32(x)	WGen_Swap32(x)
@@ -76,28 +76,28 @@ uint WGen_Swap32 (unsigned int x);
 #define _PAD8(x)	x += (8 - ((uint) x & 7)) & 7
 #define _PAD16(x)	x += (16 - ((uint) x & 15)) & 15
 
-void WGen_Printf (char *s, ...);
-void WGen_Complain (char *fmt, ...);
-void WGen_UpdateProgress (char *fmt, ...);
-void WGen_ConvertN64Pal (dPalette_t * palette, word * data, int indexes);
-void WGen_AddDigest (char *name, int lump, int size);
+void WGen_Printf(char *s, ...);
+void WGen_Complain(char *fmt, ...);
+void WGen_UpdateProgress(char *fmt, ...);
+void WGen_ConvertN64Pal(dPalette_t * palette, word * data, int indexes);
+void WGen_AddDigest(char *name, int lump, int size);
 
 #ifdef USE_PNG
-cache Png_Create (int width, int height, int numpal, dPalette_t * pal,
-                  int bits, cache data, int lump, int *size);
+cache Png_Create(int width, int height, int numpal, dPalette_t * pal,
+		 int bits, cache data, int lump, int *size);
 #endif
 
 #define TOTALSTEPS	3500
 
 #ifndef _WIN32
-static inline char *
-strupr (char *in) {
-    unsigned char *ptr = (unsigned char *) in;
-    while (*ptr != '\0') {
-        int c = toupper (*ptr);
-        *ptr++ = c;
-    }
-    return in;
+static inline char *strupr(char *in)
+{
+	unsigned char *ptr = (unsigned char *)in;
+	while (*ptr != '\0') {
+		int c = toupper(*ptr);
+		*ptr++ = c;
+	}
+	return in;
 }
 #endif
 

@@ -37,13 +37,13 @@ static const char rcsid[] = "$Id: Mem.c 744 2010-08-01 05:13:52Z svkaiser $";
 //**************************************************************
 //**************************************************************
 
-void *
-Mem_Alloc (int size) {
-    void *ret = calloc (1, size);
-    if (!ret)
-        WGen_Complain ("Mem_Alloc: Out of memory");
+void *Mem_Alloc(int size)
+{
+	void *ret = calloc(1, size);
+	if (!ret)
+		WGen_Complain("Mem_Alloc: Out of memory");
 
-    return ret;
+	return ret;
 }
 
 //**************************************************************
@@ -52,11 +52,11 @@ Mem_Alloc (int size) {
 //**************************************************************
 //**************************************************************
 
-void
-Mem_Free (void **ptr) {
-    if (!*ptr)
-        WGen_Complain ("Mem_Free: Tried to free NULL");
+void Mem_Free(void **ptr)
+{
+	if (!*ptr)
+		WGen_Complain("Mem_Free: Tried to free NULL");
 
-    free (*ptr);
-    *ptr = NULL;
+	free(*ptr);
+	*ptr = NULL;
 }

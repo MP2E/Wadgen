@@ -45,11 +45,11 @@ static size_t current = 0;
 //**************************************************************
 //**************************************************************
 
-static void
-Png_WriteData (png_structp png_ptr, cache data, size_t length) {
-    writeData = (byte *) realloc (writeData, current + length);
-    memcpy (writeData + current, data, length);
-    current += length;
+static void Png_WriteData(png_structp png_ptr, cache data, size_t length)
+{
+	writeData = (byte *) realloc(writeData, current + length);
+	memcpy(writeData + current, data, length);
+	current += length;
 }
 
 //**************************************************************
@@ -61,151 +61,151 @@ Png_WriteData (png_structp png_ptr, cache data, size_t length) {
 //**************************************************************
 
 cache
-Png_Create (int width, int height, int numpal, dPalette_t * pal,
-            int bits, cache data, int lump, int *size) {
-    int i = 0;
-    int x = 0;
-    int j = 0;
-    cache image;
-    cache out;
-    cache *row_pointers;
-    png_structp png_ptr;
-    png_infop info_ptr;
-    png_colorp palette;
+Png_Create(int width, int height, int numpal, dPalette_t * pal,
+	   int bits, cache data, int lump, int *size)
+{
+	int i = 0;
+	int x = 0;
+	int j = 0;
+	cache image;
+	cache out;
+	cache *row_pointers;
+	png_structp png_ptr;
+	png_infop info_ptr;
+	png_colorp palette;
 
-    // setup png pointer
-    png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
-    if (png_ptr == NULL) {
-        WGen_Complain ("Png_Create: Failed getting png_ptr");
-        return NULL;
-    }
+	// setup png pointer
+	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	if (png_ptr == NULL) {
+		WGen_Complain("Png_Create: Failed getting png_ptr");
+		return NULL;
+	}
+	// setup info pointer
+	info_ptr = png_create_info_struct(png_ptr);
+	if (info_ptr == NULL) {
+		png_destroy_write_struct(&png_ptr, NULL);
+		WGen_Complain("Png_Create: Failed getting info_ptr");
+		return NULL;
+	}
+	// what does this do again?
+	if (setjmp(png_jmpbuf(png_ptr))) {
+		png_destroy_write_struct(&png_ptr, &info_ptr);
+		WGen_Complain("Png_Create: Failed on setjmp");
+		return NULL;
+	}
+	// setup custom data writing procedure
+	png_set_write_fn(png_ptr, NULL, Png_WriteData, NULL);
 
-    // setup info pointer
-    info_ptr = png_create_info_struct (png_ptr);
-    if (info_ptr == NULL) {
-        png_destroy_write_struct (&png_ptr, NULL);
-        WGen_Complain ("Png_Create: Failed getting info_ptr");
-        return NULL;
-    }
+	// setup image
+	png_set_IHDR(png_ptr,
+		     info_ptr,
+		     width,
+		     height,
+		     bits,
+		     PNG_COLOR_TYPE_PALETTE,
+		     PNG_INTERLACE_NONE,
+		     PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_DEFAULT);
 
-    // what does this do again?
-    if (setjmp (png_jmpbuf (png_ptr))) {
-        png_destroy_write_struct (&png_ptr, &info_ptr);
-        WGen_Complain ("Png_Create: Failed on setjmp");
-        return NULL;
-    }
+	// setup palette
+	palette = (png_colorp) Mem_Alloc((16 * numpal) * sizeof(png_color));
 
-    // setup custom data writing procedure
-    png_set_write_fn (png_ptr, NULL, Png_WriteData, NULL);
+	// copy dPalette_t data over to png_colorp
+	for (x = 0, j = 0; x < numpal; x++) {
+		for (i = 0; i < 16; i++) {
+			palette[j].red = pal[j].r;
+			palette[j].green = pal[j].g;
+			palette[j].blue = pal[j].b;
+			j++;
+		}
+	}
 
-    // setup image
-    png_set_IHDR (png_ptr,
-                  info_ptr,
-                  width,
-                  height,
-                  bits,
-                  PNG_COLOR_TYPE_PALETTE,
-                  PNG_INTERLACE_NONE,
-                  PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_DEFAULT);
+	i = 0;
 
-    // setup palette
-    palette = (png_colorp) Mem_Alloc ((16 * numpal) * sizeof (png_color));
+	// add palette to png
+	png_set_PLTE(png_ptr, info_ptr, palette, (16 * numpal));
 
-    // copy dPalette_t data over to png_colorp
-    for (x = 0, j = 0; x < numpal; x++) {
-        for (i = 0; i < 16; i++) {
-            palette[j].red = pal[j].r;
-            palette[j].green = pal[j].g;
-            palette[j].blue = pal[j].b;
-            j++;
-        }
-    }
+	// set transparent index
+	if (palette[0].red == 0 && palette[0].green == 0
+	    && palette[0].blue == 0) {
+		char tmp[9];
 
-    i = 0;
+		strncpy(tmp, romWadFile.lump[lump].name, 8);
+		tmp[0] -= (char)0x80;
+		tmp[8] = 0;
 
-    // add palette to png
-    png_set_PLTE (png_ptr, info_ptr, palette, (16 * numpal));
+		// Exempt these lumps
+		if (strcmp(tmp, "FIRE") &&	/*strcmp(tmp, "USLEGAL") &&
+						   strcmp(tmp, "TITLE") && */ strcmp(tmp, "EVIL") &&
+		    /*strcmp(tmp, "IDCRED1") && strcmp(tmp, "WMSCRED1") && */
+		    strcmp(tmp, "SPACE") && strcmp(tmp, "CLOUD") &&
+		    strcmp(tmp, "FINAL"))
+			png_set_tRNS(png_ptr, info_ptr, (png_bytep) & i, 1,
+				     NULL);
+	}
+	// add png info to data
+	png_write_info(png_ptr, info_ptr);
 
-    // set transparent index
-    if (palette[0].red == 0 && palette[0].green == 0 && palette[0].blue == 0) {
-        char tmp[9];
+	// add offset chunk if png is a sprite
+	if (INSPRITELIST(lump)) {
+		for (i = 0; i < spriteExCount; i++) {
+			if (exSpriteLump[i].lumpRef == lump) {
+				int offs[2];
 
-        strncpy (tmp, romWadFile.lump[lump].name, 8);
-        tmp[0] -= (char) 0x80;
-        tmp[8] = 0;
+				offs[0] =
+				    WGen_Swap32(exSpriteLump[i].sprite.offsetx);
+				offs[1] =
+				    WGen_Swap32(exSpriteLump[i].sprite.offsety);
 
-        // Exempt these lumps
-        if (strcmp (tmp, "FIRE") &&     /*strcmp(tmp, "USLEGAL") &&
-                                           strcmp(tmp, "TITLE") && */ strcmp (tmp, "EVIL") &&
-            /*strcmp(tmp, "IDCRED1") && strcmp(tmp, "WMSCRED1") && */
-            strcmp (tmp, "SPACE") && strcmp (tmp, "CLOUD") &&
-            strcmp (tmp, "FINAL"))
-            png_set_tRNS (png_ptr, info_ptr, (png_bytep) & i, 1, NULL);
-    }
+				png_write_chunk(png_ptr, "grAb", (byte *) offs,
+						8);
+				break;
+			}
+		}
+	}
+	// setup packing if needed
+	png_set_packing(png_ptr);
+	png_set_packswap(png_ptr);
 
-    // add png info to data
-    png_write_info (png_ptr, info_ptr);
+	// copy data over
+	image = data;
+	row_pointers = (cache *) Mem_Alloc(sizeof(byte *) * height);
 
-    // add offset chunk if png is a sprite
-    if (INSPRITELIST (lump)) {
-        for (i = 0; i < spriteExCount; i++) {
-            if (exSpriteLump[i].lumpRef == lump) {
-                int offs[2];
+	for (i = 0; i < height; i++) {
+		row_pointers[i] = (cache) Mem_Alloc(width);
+		if (bits == 4) {
+			for (j = 0; j < width; j += 2) {
+				row_pointers[i][j] = *image & 0xf;
+				row_pointers[i][j + 1] = *image >> 4;
+				image++;
+			}
+		} else {
+			for (j = 0; j < width; j++) {
+				row_pointers[i][j] = *image;
+				image++;
+			}
+		}
 
-                offs[0] = WGen_Swap32 (exSpriteLump[i].sprite.offsetx);
-                offs[1] = WGen_Swap32 (exSpriteLump[i].sprite.offsety);
+		png_write_rows(png_ptr, &row_pointers[i], 1);
+	}
 
-                png_write_chunk (png_ptr, "grAb", (byte *) offs, 8);
-                break;
-            }
-        }
-    }
+	// cleanup
+	png_write_end(png_ptr, info_ptr);
+	Mem_Free((void **)&palette);
+	Mem_Free((void **)row_pointers);
+	palette = NULL;
+	row_pointers = NULL;
+	png_destroy_write_struct(&png_ptr, &info_ptr);
 
-    // setup packing if needed
-    png_set_packing (png_ptr);
-    png_set_packswap (png_ptr);
+	// allocate output
+	out = (cache) Mem_Alloc(current);
+	memcpy(out, writeData, current);
+	*size = current;
 
-    // copy data over
-    image = data;
-    row_pointers = (cache *) Mem_Alloc (sizeof (byte *) * height);
+	free(writeData);
+	writeData = NULL;
+	current = 0;
 
-    for (i = 0; i < height; i++) {
-        row_pointers[i] = (cache) Mem_Alloc (width);
-        if (bits == 4) {
-            for (j = 0; j < width; j += 2) {
-                row_pointers[i][j] = *image & 0xf;
-                row_pointers[i][j + 1] = *image >> 4;
-                image++;
-            }
-        }
-        else {
-            for (j = 0; j < width; j++) {
-                row_pointers[i][j] = *image;
-                image++;
-            }
-        }
-
-        png_write_rows (png_ptr, &row_pointers[i], 1);
-    }
-
-    // cleanup
-    png_write_end (png_ptr, info_ptr);
-    Mem_Free ((void **) &palette);
-    Mem_Free ((void **) row_pointers);
-    palette = NULL;
-    row_pointers = NULL;
-    png_destroy_write_struct (&png_ptr, &info_ptr);
-
-    // allocate output
-    out = (cache) Mem_Alloc (current);
-    memcpy (out, writeData, current);
-    *size = current;
-
-    free (writeData);
-    writeData = NULL;
-    current = 0;
-
-    return out;
+	return out;
 }
 
-#endif // USE_PNG
+#endif				// USE_PNG

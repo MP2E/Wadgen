@@ -37,8 +37,8 @@ static const char rcsid[] = "$Id: Sound.c 1096 2012-03-31 18:28:01Z svkaiser $";
 #include "sndfont.h"
 #endif
 
-#define ROM_SNDTITLE 0x34364E53 // SN64
-#define ROM_SEQTITLE 0x51455353 // SSEQ
+#define ROM_SNDTITLE 0x34364E53	// SN64
+#define ROM_SEQTITLE 0x51455353	// SSEQ
 
 #define WAV_HEADER_SIZE     0x2C
 #define MIDI_HEADER_SIZE    0x0E
@@ -63,8 +63,8 @@ static byte fillbuffer[32768];
 static uint newbankoffset = 0;
 
 static const short itable[16] = {
-    0, 1, 2, 3, 4, 5, 6, 7,
-    -8, -7, -6, -5, -4, -3, -2, -1,
+	0, 1, 2, 3, 4, 5, 6, 7,
+	-8, -7, -6, -5, -4, -3, -2, -1,
 };
 
 midiheader_t *midis;
@@ -73,124 +73,124 @@ midiheader_t *midis;
 // lump names for midi tracks
 //
 const char *sndlumpnames[] = {
-    "NOSOUND",
-    "SNDPUNCH",
-    "SNDSPAWN",
-    "SNDEXPLD",
-    "SNDIMPCT",
-    "SNDPSTOL",
-    "SNDSHTGN",
-    "SNDPLSMA",
-    "SNDBFG",
-    "SNDSAWUP",
-    "SNDSWIDL",
-    "SNDSAW1",
-    "SNDSAW2",
-    "SNDMISLE",
-    "SNDBFGXP",
-    "SNDPSTRT",
-    "SNDPSTOP",
-    "SNDDORUP",
-    "SNDDORDN",
-    "SNDSCMOV",
-    "SNDSWCH1",
-    "SNDSWCH2",
-    "SNDITEM",
-    "SNDSGCK",
-    "SNDOOF1",
-    "SNDTELPT",
-    "SNDOOF2",
-    "SNDSHT2F",
-    "SNDLOAD1",
-    "SNDLOAD2",
-    "SNDPPAIN",
-    "SNDPLDIE",
-    "SNDSLOP",
-    "SNDZSIT1",
-    "SNDZSIT2",
-    "SNDZSIT3",
-    "SNDZDIE1",
-    "SNDZDIE2",
-    "SNDZDIE3",
-    "SNDZACT",
-    "SNDPAIN1",
-    "SNDPAIN2",
-    "SNDDBACT",
-    "SNDSCRCH",
-    "SNDISIT1",
-    "SNDISIT2",
-    "SNDIDIE1",
-    "SNDIDIE2",
-    "SNDIACT",
-    "SNDSGSIT",
-    "SNDSGATK",
-    "SNDSGDIE",
-    "SNDB1SIT",
-    "SNDB1DIE",
-    "SNDHDSIT",
-    "SNDHDDIE",
-    "SNDSKATK",
-    "SNDB2SIT",
-    "SNDB2DIE",
-    "SNDPESIT",
-    "SNDPEPN",
-    "SNDPEDIE",
-    "SNDBSSIT",
-    "SNDBSDIE",
-    "SNDBSLFT",
-    "SNDBSSMP",
-    "SNDFTATK",
-    "SNDFTSIT",
-    "SNDFTHIT",
-    "SNDFTDIE",
-    "SNDBDMSL",
-    "SNDRVACT",
-    "SNDTRACR",
-    "SNDDART",
-    "SNDRVHIT",
-    "SNDCYSIT",
-    "SNDCYDTH",
-    "SNDCYHOF",
-    "SNDMETAL",
-    "SNDDOR2U",
-    "SNDDOR2D",
-    "SNDPWRUP",
-    "SNDLASER",
-    "SNDBUZZ",
-    "SNDTHNDR",
-    "SNDLNING",
-    "SNDQUAKE",
-    "SNDDRTHT",
-    "SNDRCACT",
-    "SNDRCATK",
-    "SNDRCDIE",
-    "SNDRCPN",
-    "SNDRCSIT",
-    "MUSAMB01",
-    "MUSAMB02",
-    "MUSAMB03",
-    "MUSAMB04",
-    "MUSAMB05",
-    "MUSAMB06",
-    "MUSAMB07",
-    "MUSAMB08",
-    "MUSAMB09",
-    "MUSAMB10",
-    "MUSAMB11",
-    "MUSAMB12",
-    "MUSAMB13",
-    "MUSAMB14",
-    "MUSAMB15",
-    "MUSAMB16",
-    "MUSAMB17",
-    "MUSAMB18",
-    "MUSAMB19",
-    "MUSAMB20",
-    "MUSFINAL",
-    "MUSDONE",
-    "MUSINTRO",
-    "MUSTITLE",
-    NULL
+	"NOSOUND",
+	"SNDPUNCH",
+	"SNDSPAWN",
+	"SNDEXPLD",
+	"SNDIMPCT",
+	"SNDPSTOL",
+	"SNDSHTGN",
+	"SNDPLSMA",
+	"SNDBFG",
+	"SNDSAWUP",
+	"SNDSWIDL",
+	"SNDSAW1",
+	"SNDSAW2",
+	"SNDMISLE",
+	"SNDBFGXP",
+	"SNDPSTRT",
+	"SNDPSTOP",
+	"SNDDORUP",
+	"SNDDORDN",
+	"SNDSCMOV",
+	"SNDSWCH1",
+	"SNDSWCH2",
+	"SNDITEM",
+	"SNDSGCK",
+	"SNDOOF1",
+	"SNDTELPT",
+	"SNDOOF2",
+	"SNDSHT2F",
+	"SNDLOAD1",
+	"SNDLOAD2",
+	"SNDPPAIN",
+	"SNDPLDIE",
+	"SNDSLOP",
+	"SNDZSIT1",
+	"SNDZSIT2",
+	"SNDZSIT3",
+	"SNDZDIE1",
+	"SNDZDIE2",
+	"SNDZDIE3",
+	"SNDZACT",
+	"SNDPAIN1",
+	"SNDPAIN2",
+	"SNDDBACT",
+	"SNDSCRCH",
+	"SNDISIT1",
+	"SNDISIT2",
+	"SNDIDIE1",
+	"SNDIDIE2",
+	"SNDIACT",
+	"SNDSGSIT",
+	"SNDSGATK",
+	"SNDSGDIE",
+	"SNDB1SIT",
+	"SNDB1DIE",
+	"SNDHDSIT",
+	"SNDHDDIE",
+	"SNDSKATK",
+	"SNDB2SIT",
+	"SNDB2DIE",
+	"SNDPESIT",
+	"SNDPEPN",
+	"SNDPEDIE",
+	"SNDBSSIT",
+	"SNDBSDIE",
+	"SNDBSLFT",
+	"SNDBSSMP",
+	"SNDFTATK",
+	"SNDFTSIT",
+	"SNDFTHIT",
+	"SNDFTDIE",
+	"SNDBDMSL",
+	"SNDRVACT",
+	"SNDTRACR",
+	"SNDDART",
+	"SNDRVHIT",
+	"SNDCYSIT",
+	"SNDCYDTH",
+	"SNDCYHOF",
+	"SNDMETAL",
+	"SNDDOR2U",
+	"SNDDOR2D",
+	"SNDPWRUP",
+	"SNDLASER",
+	"SNDBUZZ",
+	"SNDTHNDR",
+	"SNDLNING",
+	"SNDQUAKE",
+	"SNDDRTHT",
+	"SNDRCACT",
+	"SNDRCATK",
+	"SNDRCDIE",
+	"SNDRCPN",
+	"SNDRCSIT",
+	"MUSAMB01",
+	"MUSAMB02",
+	"MUSAMB03",
+	"MUSAMB04",
+	"MUSAMB05",
+	"MUSAMB06",
+	"MUSAMB07",
+	"MUSAMB08",
+	"MUSAMB09",
+	"MUSAMB10",
+	"MUSAMB11",
+	"MUSAMB12",
+	"MUSAMB13",
+	"MUSAMB14",
+	"MUSAMB15",
+	"MUSAMB16",
+	"MUSAMB17",
+	"MUSAMB18",
+	"MUSAMB19",
+	"MUSAMB20",
+	"MUSFINAL",
+	"MUSDONE",
+	"MUSINTRO",
+	"MUSTITLE",
+	NULL
 };
 
 //**************************************************************
@@ -201,15 +201,15 @@ const char *sndlumpnames[] = {
 //**************************************************************
 //**************************************************************
 
-static void
-Sound_CreateMidiHeader (entry_t * entry, midiheader_t * mthd) {
-    strncpy (mthd->header, "MThd", 4);
+static void Sound_CreateMidiHeader(entry_t * entry, midiheader_t * mthd)
+{
+	strncpy(mthd->header, "MThd", 4);
 
-    mthd->chunksize = WGen_Swap32 (6);
-    mthd->type = WGen_Swap16 (1);
-    mthd->ntracks = WGen_Swap16 (entry->ntrack);
-    mthd->size = MIDI_HEADER_SIZE;
-    mthd->tracks = Mem_Alloc (sizeof (miditrack_t) * entry->ntrack);
+	mthd->chunksize = WGen_Swap32(6);
+	mthd->type = WGen_Swap16(1);
+	mthd->ntracks = WGen_Swap16(entry->ntrack);
+	mthd->size = MIDI_HEADER_SIZE;
+	mthd->tracks = Mem_Alloc(sizeof(miditrack_t) * entry->ntrack);
 }
 
 //**************************************************************
@@ -220,20 +220,20 @@ Sound_CreateMidiHeader (entry_t * entry, midiheader_t * mthd) {
 //**************************************************************
 //**************************************************************
 
-static subpatch_t *
-Sound_GetSubPatchByNote (patch_t * patch, int note) {
-    int i;
+static subpatch_t *Sound_GetSubPatchByNote(patch_t * patch, int note)
+{
+	int i;
 
-    if (note >= 0) {
-        for (i = 0; i < patch->length; i++) {
-            subpatch_t *s = &subpatches[patch->offset + i];
+	if (note >= 0) {
+		for (i = 0; i < patch->length; i++) {
+			subpatch_t *s = &subpatches[patch->offset + i];
 
-            if (note >= s->minnote && note <= s->maxnote)
-                return s;
-        }
-    }
+			if (note >= s->minnote && note <= s->maxnote)
+				return s;
+		}
+	}
 
-    return &subpatches[patch->offset];
+	return &subpatches[patch->offset];
 }
 
 //**************************************************************
@@ -245,51 +245,52 @@ Sound_GetSubPatchByNote (patch_t * patch, int note) {
 //**************************************************************
 
 static void
-Sound_CreateMidiTrack (midiheader_t * mthd, track_t * track, byte * data,
-                       int chan, int index, patch_t * patch) {
-    miditrack_t *mtrk;
-    byte *midi;
-    byte *buff;
-    int i;
-    int len;
-    int pitchbend;
-    byte temp = 0;
-    int tracksize;
-    char unkevent[32];
-    subpatch_t *inst;
-    int note = -1;
-    int bendrange = 0;
+Sound_CreateMidiTrack(midiheader_t * mthd, track_t * track, byte * data,
+		      int chan, int index, patch_t * patch)
+{
+	miditrack_t *mtrk;
+	byte *midi;
+	byte *buff;
+	int i;
+	int len;
+	int pitchbend;
+	byte temp = 0;
+	int tracksize;
+	char unkevent[32];
+	subpatch_t *inst;
+	int note = -1;
+	int bendrange = 0;
 
-    //
-    // doesn't matter what order it's in. all subpatches per patch
-    // should all either be an instrument or a non-instrument
-    //
-    inst = &subpatches[patch->offset];
+	//
+	// doesn't matter what order it's in. all subpatches per patch
+	// should all either be an instrument or a non-instrument
+	//
+	inst = &subpatches[patch->offset];
 
-    //
-    // I can only assume that all tracks for a midi song
-    // have the same time division
-    //
-    mthd->delta = WGen_Swap16 (track->timediv);
+	//
+	// I can only assume that all tracks for a midi song
+	// have the same time division
+	//
+	mthd->delta = WGen_Swap16(track->timediv);
 
-    //
-    // update midi type
-    //
-    mthd->type = WGen_Swap16 (inst->instrument);
+	//
+	// update midi type
+	//
+	mthd->type = WGen_Swap16(inst->instrument);
 
-    mtrk = &mthd->tracks[chan];
-    strncpy (mtrk->header, "MTrk", 4);
+	mtrk = &mthd->tracks[chan];
+	strncpy(mtrk->header, "MTrk", 4);
 
-    //
-    // avoid percussion channels (default as 9)
-    //
-    if (chan >= 0x09)
-        chan += 1;
+	//
+	// avoid percussion channels (default as 9)
+	//
+	if (chan >= 0x09)
+		chan += 1;
 
-    memset (fillbuffer, 0, 32768);
-    tracksize = 0;
-    buff = fillbuffer;
-    midi = data;
+	memset(fillbuffer, 0, 32768);
+	tracksize = 0;
+	buff = fillbuffer;
+	midi = data;
 
 #define PRINTSTRING(evt)                                \
     sprintf(unkevent, "UNKNOWN EVENT: 0x%x", evt);      \
@@ -304,235 +305,234 @@ Sound_CreateMidiTrack (midiheader_t * mthd, track_t * track, byte * data,
         tracksize++;                                    \
     }
 
-    //
-    // set initial tempo
-    //
-    if (chan == 0) {
-        int tempo = 60000000 / track->bpm;
-        byte *tmp = (byte *) & tempo;
+	//
+	// set initial tempo
+	//
+	if (chan == 0) {
+		int tempo = 60000000 / track->bpm;
+		byte *tmp = (byte *) & tempo;
 
-        *buff++ = 0;
-        *buff++ = 0xff;
-        *buff++ = 0x51;
-        *buff++ = 3;
-        *buff++ = tmp[2];
-        *buff++ = tmp[1];
-        *buff++ = tmp[0];
+		*buff++ = 0;
+		*buff++ = 0xff;
+		*buff++ = 0x51;
+		*buff++ = 3;
+		*buff++ = tmp[2];
+		*buff++ = tmp[1];
+		*buff++ = tmp[0];
 
-        tracksize += 7;
-    }
+		tracksize += 7;
+	}
+	//
+	// set initial bank
+	//
+	if (!inst->instrument) {
+		*buff++ = 0;
+		*buff++ = ((0x0b << 4) | chan);
+		*buff++ = 0x00;	// bank select
+		*buff++ = 1;	// select bank #1
 
-    //
-    // set initial bank
-    //
-    if (!inst->instrument) {
-        *buff++ = 0;
-        *buff++ = ((0x0b << 4) | chan);
-        *buff++ = 0x00;         // bank select
-        *buff++ = 1;            // select bank #1
+		tracksize += 4;
+	}
+	//
+	// set initial program
+	//
+	*buff++ = 0;
+	*buff++ = ((0x0c << 4) | chan);	// program change
 
-        tracksize += 4;
-    }
+	temp = (byte) track->id;
+	if (temp >= newbankoffset)
+		temp = (temp - newbankoffset);
 
-    //
-    // set initial program
-    //
-    *buff++ = 0;
-    *buff++ = ((0x0c << 4) | chan);     // program change
+	*buff++ = temp;
+	tracksize += 3;
 
-    temp = (byte) track->id;
-    if (temp >= newbankoffset)
-        temp = (temp - newbankoffset);
+	//
+	// set initial volume
+	//
+	*buff++ = 0;
+	*buff++ = ((0x0b << 4) | chan);
+	*buff++ = 0x07;
+	*buff++ = track->volume;
+	tracksize += 4;
 
-    *buff++ = temp;
-    tracksize += 3;
+	//
+	// set initial pan
+	//
+	*buff++ = 0;
+	*buff++ = ((0x0b << 4) | chan);
+	*buff++ = 0x0a;
+	*buff++ = track->pan;
+	tracksize += 4;
 
-    //
-    // set initial volume
-    //
-    *buff++ = 0;
-    *buff++ = ((0x0b << 4) | chan);
-    *buff++ = 0x07;
-    *buff++ = track->volume;
-    tracksize += 4;
+	while (1) {
+		do {
+			*buff++ = *midi;
+			tracksize++;
+		} while (*midi++ & 0x80);
 
-    //
-    // set initial pan
-    //
-    *buff++ = 0;
-    *buff++ = ((0x0b << 4) | chan);
-    *buff++ = 0x0a;
-    *buff++ = track->pan;
-    tracksize += 4;
+		// end marker
+		if (*midi == 0x22) {
+			*buff++ = 0xff;
+			*buff++ = 0x2f;
+			tracksize += 2;
+			break;
+		}
 
-    while (1) {
-        do {
-            *buff++ = *midi;
-            tracksize++;
-        } while (*midi++ & 0x80);
+		switch (*midi) {
+		case 0x02:	// unknown 0x02
+			PRINTSTRING(*midi);
+			*midi++;
+			break;
+		case 0x07:	// program change
+			*buff++ = ((0x0c << 4) | chan);
+			*midi++;
 
-        // end marker
-        if (*midi == 0x22) {
-            *buff++ = 0xff;
-            *buff++ = 0x2f;
-            tracksize += 2;
-            break;
-        }
+			temp = *midi++;
+			if (temp >= newbankoffset)
+				temp = (temp - newbankoffset);
 
-        switch (*midi) {
-        case 0x02:             // unknown 0x02
-            PRINTSTRING (*midi);
-            *midi++;
-            break;
-        case 0x07:             // program change
-            *buff++ = ((0x0c << 4) | chan);
-            *midi++;
+			*buff++ = temp;
+			*midi++;
+			tracksize += 2;
 
-            temp = *midi++;
-            if (temp >= newbankoffset)
-                temp = (temp - newbankoffset);
+			break;
+		case 0x09:	// pitch bend
 
-            *buff++ = temp;
-            *midi++;
-            tracksize += 2;
+			//
+			// set pitch wheel sensitivity
+			//
+			if (inst->instrument
+			    && inst->pwheelrange_h != bendrange) {
+				bendrange = inst->pwheelrange_h;
 
-            break;
-        case 0x09:             // pitch bend
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x65;
+				*buff++ = 0;
+				*buff++ = 0;
+				tracksize += 4;
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x64;
+				*buff++ = 0;
+				*buff++ = 0;
+				tracksize += 4;
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x06;
+				*buff++ = bendrange;
+				*buff++ = 0;
+				tracksize += 4;
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x26;
+				*buff++ = 0;
+				*buff++ = 0;
+				tracksize += 4;
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x65;
+				*buff++ = 127;
+				*buff++ = 0;
+				tracksize += 4;
+				*buff++ = ((0x0b << 4) | chan);
+				*buff++ = 0x64;
+				*buff++ = 127;
+				*buff++ = 0;
+				tracksize += 4;
+			}
 
-            //
-            // set pitch wheel sensitivity
-            //
-            if (inst->instrument && inst->pwheelrange_h != bendrange) {
-                bendrange = inst->pwheelrange_h;
+			*buff++ = ((0x0e << 4) | chan);
+			*midi++;
 
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x65;
-                *buff++ = 0;
-                *buff++ = 0;
-                tracksize += 4;
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x64;
-                *buff++ = 0;
-                *buff++ = 0;
-                tracksize += 4;
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x06;
-                *buff++ = bendrange;
-                *buff++ = 0;
-                tracksize += 4;
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x26;
-                *buff++ = 0;
-                *buff++ = 0;
-                tracksize += 4;
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x65;
-                *buff++ = 127;
-                *buff++ = 0;
-                tracksize += 4;
-                *buff++ = ((0x0b << 4) | chan);
-                *buff++ = 0x64;
-                *buff++ = 127;
-                *buff++ = 0;
-                tracksize += 4;
-            }
+			temp = *midi++;
+			pitchbend = temp;
+			temp = *midi++;
+			pitchbend = (signed short)((temp << 8) | pitchbend);
+			pitchbend += 8192;
 
-            *buff++ = ((0x0e << 4) | chan);
-            *midi++;
+			if (pitchbend > 16383)
+				pitchbend = 16383;
 
-            temp = *midi++;
-            pitchbend = temp;
-            temp = *midi++;
-            pitchbend = (signed short) ((temp << 8) | pitchbend);
-            pitchbend += 8192;
+			if (pitchbend < 0)
+				pitchbend = 0;
 
-            if (pitchbend > 16383)
-                pitchbend = 16383;
+			pitchbend = (pitchbend << 1);
 
-            if (pitchbend < 0)
-                pitchbend = 0;
+			*buff++ = (pitchbend & 0xff);
+			*buff++ = (pitchbend >> 8);
+			tracksize += 3;
+			break;
+		case 0x0b:	// unknown 0x0b
+			PRINTSTRING(*midi);
+			*midi++;
+			*midi++;
+			break;
+		case 0x0c:	// global volume
+			*buff++ = ((0x0b << 4) | chan);
+			*midi++;
+			*buff++ = 0x07;
+			*buff++ = *midi++;
+			tracksize += 3;
+			break;
+		case 0x0d:	// global panning
+			*buff++ = ((0x0b << 4) | chan);
+			*midi++;
+			*buff++ = 0x0a;
+			*buff++ = *midi++;
+			tracksize += 3;
+			break;
+		case 0x0e:	// sustain pedal
+			*buff++ = ((0x0b << 4) | chan);
+			*midi++;
+			*buff++ = 0x40;
+			*buff++ = *midi++;
+			tracksize += 3;
+			break;
+		case 0x0f:	// unknown 0x0f
+			PRINTSTRING(*midi);
+			*midi++;
+			*midi++;
+			break;
+		case 0x11:	// play note
+			*buff++ = ((0x09 << 4) | chan);
+			*midi++;
+			*buff++ = note = *midi++;
+			*buff++ = *midi++;
+			tracksize += 3;
+			break;
+		case 0x12:	// stop note
+			*buff++ = ((0x09 << 4) | chan);
+			*midi++;
+			*buff++ = *midi++;
+			*buff++ = 0;
+			tracksize += 3;
+			break;
+		case 0x20:	// jump to loop position
+			*buff++ = 0xff;
+			*buff++ = 0x7f;
+			*buff++ = 4;
+			*buff++ = 0;
+			*buff++ = *midi++;
+			*buff++ = *midi++;
+			*buff++ = *midi++;
+			tracksize += 7;
+			break;
+		case 0x23:	// set loop position
+			*buff++ = 0xff;
+			*buff++ = 0x7f;
+			*buff++ = 2;
+			*buff++ = 0;
+			*buff++ = *midi++;
+			tracksize += 5;
+			break;
+		}
 
-            pitchbend = (pitchbend << 1);
+		inst = Sound_GetSubPatchByNote(patch, note);
+	}
 
-            *buff++ = (pitchbend & 0xff);
-            *buff++ = (pitchbend >> 8);
-            tracksize += 3;
-            break;
-        case 0x0b:             // unknown 0x0b
-            PRINTSTRING (*midi);
-            *midi++;
-            *midi++;
-            break;
-        case 0x0c:             // global volume
-            *buff++ = ((0x0b << 4) | chan);
-            *midi++;
-            *buff++ = 0x07;
-            *buff++ = *midi++;
-            tracksize += 3;
-            break;
-        case 0x0d:             // global panning
-            *buff++ = ((0x0b << 4) | chan);
-            *midi++;
-            *buff++ = 0x0a;
-            *buff++ = *midi++;
-            tracksize += 3;
-            break;
-        case 0x0e:             // sustain pedal
-            *buff++ = ((0x0b << 4) | chan);
-            *midi++;
-            *buff++ = 0x40;
-            *buff++ = *midi++;
-            tracksize += 3;
-            break;
-        case 0x0f:             // unknown 0x0f
-            PRINTSTRING (*midi);
-            *midi++;
-            *midi++;
-            break;
-        case 0x11:             // play note
-            *buff++ = ((0x09 << 4) | chan);
-            *midi++;
-            *buff++ = note = *midi++;
-            *buff++ = *midi++;
-            tracksize += 3;
-            break;
-        case 0x12:             // stop note
-            *buff++ = ((0x09 << 4) | chan);
-            *midi++;
-            *buff++ = *midi++;
-            *buff++ = 0;
-            tracksize += 3;
-            break;
-        case 0x20:             // jump to loop position
-            *buff++ = 0xff;
-            *buff++ = 0x7f;
-            *buff++ = 4;
-            *buff++ = 0;
-            *buff++ = *midi++;
-            *buff++ = *midi++;
-            *buff++ = *midi++;
-            tracksize += 7;
-            break;
-        case 0x23:             // set loop position
-            *buff++ = 0xff;
-            *buff++ = 0x7f;
-            *buff++ = 2;
-            *buff++ = 0;
-            *buff++ = *midi++;
-            tracksize += 5;
-            break;
-        }
+	tracksize++;
 
-        inst = Sound_GetSubPatchByNote (patch, note);
-    }
+	mtrk->length = WGen_Swap32(tracksize);
+	mtrk->data = Mem_Alloc(tracksize);
+	memcpy(mtrk->data, fillbuffer, tracksize);
 
-    tracksize++;
-
-    mtrk->length = WGen_Swap32 (tracksize);
-    mtrk->data = Mem_Alloc (tracksize);
-    memcpy (mtrk->data, fillbuffer, tracksize);
-
-    mthd->size += tracksize + 8;
+	mthd->size += tracksize + 8;
 }
 
 //**************************************************************
@@ -543,57 +543,57 @@ Sound_CreateMidiTrack (midiheader_t * mthd, track_t * track, byte * data,
 //**************************************************************
 //**************************************************************
 
-static void
-Sound_CreateWavHeader (byte * out, int SAMPLERATE, int nsamp) {
-    uint scratch;
+static void Sound_CreateWavHeader(byte * out, int SAMPLERATE, int nsamp)
+{
+	uint scratch;
 
-    memcpy (out, "RIFF", 4);
-    out += 4;
+	memcpy(out, "RIFF", 4);
+	out += 4;
 
-    scratch = nsamp * 2 + 36;
-    memcpy (out, &scratch, 4);
-    out += 4;
+	scratch = nsamp * 2 + 36;
+	memcpy(out, &scratch, 4);
+	out += 4;
 
-    memcpy (out, "WAVE", 4);
-    out += 4;
+	memcpy(out, "WAVE", 4);
+	out += 4;
 
-    memcpy (out, "fmt ", 4);
-    out += 4;
+	memcpy(out, "fmt ", 4);
+	out += 4;
 
-    scratch = 16;               // fmt length
-    memcpy (out, &scratch, 4);
-    out += 4;
+	scratch = 16;		// fmt length
+	memcpy(out, &scratch, 4);
+	out += 4;
 
-    scratch = 1;                // uncompressed pcm
-    memcpy (out, &scratch, 2);
-    out += 2;
+	scratch = 1;		// uncompressed pcm
+	memcpy(out, &scratch, 2);
+	out += 2;
 
-    scratch = 1;                // mono
-    memcpy (out, &scratch, 2);
-    out += 2;
+	scratch = 1;		// mono
+	memcpy(out, &scratch, 2);
+	out += 2;
 
-    scratch = SAMPLERATE;       // samplerate
-    memcpy (out, &scratch, 4);
-    out += 4;
+	scratch = SAMPLERATE;	// samplerate
+	memcpy(out, &scratch, 4);
+	out += 4;
 
-    scratch = 2 * SAMPLERATE;   // bytes per second
-    memcpy (out, &scratch, 4);
-    out += 4;
+	scratch = 2 * SAMPLERATE;	// bytes per second
+	memcpy(out, &scratch, 4);
+	out += 4;
 
-    scratch = 2;                // blockalign
-    memcpy (out, &scratch, 2);
-    out += 2;
+	scratch = 2;		// blockalign
+	memcpy(out, &scratch, 2);
+	out += 2;
 
-    scratch = 16;               // bits per sample
-    memcpy (out, &scratch, 2);
-    out += 2;
+	scratch = 16;		// bits per sample
+	memcpy(out, &scratch, 2);
+	out += 2;
 
-    memcpy (out, "data", 4);
-    out += 4;
+	memcpy(out, "data", 4);
+	out += 4;
 
-    scratch = nsamp * 2;        // length of pcm data
-    memcpy (out, &scratch, 4);
-    out += 4;
+	scratch = nsamp * 2;	// length of pcm data
+	memcpy(out, &scratch, 4);
+	out += 4;
 }
 
 //**************************************************************
@@ -605,46 +605,49 @@ Sound_CreateWavHeader (byte * out, int SAMPLERATE, int nsamp) {
 //**************************************************************
 
 static void
-Sound_Decode8 (byte * in, short *out, int index, short *pred1, short lastsmp[8]) {
-    int i;
-    short tmp[8];
-    long total = 0;
-    short sample = 0;
-    short *pred2;
-    long result;
+Sound_Decode8(byte * in, short *out, int index, short *pred1, short lastsmp[8])
+{
+	int i;
+	short tmp[8];
+	long total = 0;
+	short sample = 0;
+	short *pred2;
+	long result;
 
-    memset (out, 0, sizeof (signed short) * 8);
+	memset(out, 0, sizeof(signed short) * 8);
 
-    pred2 = (pred1 + 8);
+	pred2 = (pred1 + 8);
 
-    for (i = 0; i < 8; i++)
-        tmp[i] = itable[(i & 1) ? (*in++ & 0xf) : ((*in >> 4) & 0xf)] << index;
+	for (i = 0; i < 8; i++)
+		tmp[i] =
+		    itable[(i & 1) ? (*in++ & 0xf) : ((*in >> 4) & 0xf)] <<
+		    index;
 
-    for (i = 0; i < 8; i++) {
-        total = (pred1[i] * lastsmp[6]);
-        total += (pred2[i] * lastsmp[7]);
+	for (i = 0; i < 8; i++) {
+		total = (pred1[i] * lastsmp[6]);
+		total += (pred2[i] * lastsmp[7]);
 
-        if (i > 0) {
-            int x;
+		if (i > 0) {
+			int x;
 
-            for (x = i - 1; x > -1; x--)
-                total += (tmp[((i - 1) - x)] * pred2[x]);
-        }
+			for (x = i - 1; x > -1; x--)
+				total += (tmp[((i - 1) - x)] * pred2[x]);
+		}
 
-        result = ((tmp[i] << 0xb) + total) >> 0xb;
+		result = ((tmp[i] << 0xb) + total) >> 0xb;
 
-        if (result > 32767)
-            sample = 32767;
-        else if (result < -32768)
-            sample = -32768;
-        else
-            sample = (signed short) result;
+		if (result > 32767)
+			sample = 32767;
+		else if (result < -32768)
+			sample = -32768;
+		else
+			sample = (signed short)result;
 
-        out[i] = sample;
-    }
+		out[i] = sample;
+	}
 
-    // update the last sample set for subsequent iterations
-    memcpy (lastsmp, out, sizeof (signed short) * 8);
+	// update the last sample set for subsequent iterations
+	memcpy(lastsmp, out, sizeof(signed short) * 8);
 }
 
 //**************************************************************
@@ -656,83 +659,82 @@ Sound_Decode8 (byte * in, short *out, int index, short *pred1, short lastsmp[8])
 //**************************************************************
 
 static uint
-Sound_DecodeVADPCM (byte * in, short *out, uint len, predictor_t * book,
-                    subpatch_t * sp) {
-    short lastsmp[8];
-    int index;
-    int pred;
-    byte *pin = in;
-    int total = 0;
-    int _len = (len / 9) * 9;   //make sure length was actually a multiple of 9
-    int samples = 0;
-    int x;
+Sound_DecodeVADPCM(byte * in, short *out, uint len, predictor_t * book,
+		   subpatch_t * sp)
+{
+	short lastsmp[8];
+	int index;
+	int pred;
+	byte *pin = in;
+	int total = 0;
+	int _len = (len / 9) * 9;	//make sure length was actually a multiple of 9
+	int samples = 0;
+	int x;
 
-    for (x = 0; x < 8; x++)
-        lastsmp[x] = 0;
+	for (x = 0; x < 8; x++)
+		lastsmp[x] = 0;
 
-    while (_len) {
-        short *pred1;
+	while (_len) {
+		short *pred1;
 
-        index = (*in >> 4) & 0xf;
-        pred = (*in & 0xf);
-        _len--;
+		index = (*in >> 4) & 0xf;
+		pred = (*in & 0xf);
+		_len--;
 
-        pred1 = &book->preds[pred * 16];
+		pred1 = &book->preds[pred * 16];
 
-        Sound_Decode8 (++in, out, index, pred1, lastsmp);
-        in += 4;
-        _len -= 4;
-
-#ifndef USE_SOUNDFONTS
-        //
-        // cut speed of sound by half
-        //
-        if (!sp->instrument) {
-            int j;
-            short *rover = out;
-
-            for (j = 0; j < 8; j++) {
-                *rover = lastsmp[j];
-                rover++;
-                *rover = lastsmp[j];
-                rover++;
-            }
-
-            out += 16;
-        }
-        else
-#endif
-            out += 8;
-
-        Sound_Decode8 (in, out, index, pred1, lastsmp);
-        in += 4;
-        _len -= 4;
+		Sound_Decode8(++in, out, index, pred1, lastsmp);
+		in += 4;
+		_len -= 4;
 
 #ifndef USE_SOUNDFONTS
-        //
-        // cut speed of sound by half
-        //
-        if (!sp->instrument) {
-            int j;
-            short *rover = out;
+		//
+		// cut speed of sound by half
+		//
+		if (!sp->instrument) {
+			int j;
+			short *rover = out;
 
-            for (j = 0; j < 8; j++) {
-                *rover = lastsmp[j];
-                rover++;
-                *rover = lastsmp[j];
-                rover++;
-            }
+			for (j = 0; j < 8; j++) {
+				*rover = lastsmp[j];
+				rover++;
+				*rover = lastsmp[j];
+				rover++;
+			}
 
-            out += 16;
-        }
-        else
+			out += 16;
+		} else
 #endif
-            out += 8;
+			out += 8;
 
-        samples += 16;
-    }
+		Sound_Decode8(in, out, index, pred1, lastsmp);
+		in += 4;
+		_len -= 4;
 
-    return samples;
+#ifndef USE_SOUNDFONTS
+		//
+		// cut speed of sound by half
+		//
+		if (!sp->instrument) {
+			int j;
+			short *rover = out;
+
+			for (j = 0; j < 8; j++) {
+				*rover = lastsmp[j];
+				rover++;
+				*rover = lastsmp[j];
+				rover++;
+			}
+
+			out += 16;
+		} else
+#endif
+			out += 8;
+
+		samples += 16;
+	}
+
+	return samples;
 }
 
 //**************************************************************
@@ -744,53 +746,54 @@ Sound_DecodeVADPCM (byte * in, short *out, uint len, predictor_t * book,
 //**************************************************************
 
 static void
-Sound_ProcessData (subpatch_t * in, wavtable_t * wavtable, int samplerate,
-                   predictor_t * pred) {
-    byte *indata;
-    uint indatalen;
-    short *outdata;
-    short *wavdata;
-    uint nsamp;
+Sound_ProcessData(subpatch_t * in, wavtable_t * wavtable, int samplerate,
+		  predictor_t * pred)
+{
+	byte *indata;
+	uint indatalen;
+	short *outdata;
+	short *wavdata;
+	uint nsamp;
 #ifdef USE_SOUNDFONTS
-    char samplename[20];
+	char samplename[20];
 #endif
-    uint outsize;
+	uint outsize;
 
-    indatalen = wavtable->size;
-    indata = (sfxdata + wavtable->start);
+	indatalen = wavtable->size;
+	indata = (sfxdata + wavtable->start);
 
-    // not sure if this is the right way to go, it might be possible to simply decode a partial last block
-    if (indatalen % 9) {
-        while (indatalen % 9)
-            indatalen--;
-    }
+	// not sure if this is the right way to go, it might be possible to simply decode a partial last block
+	if (indatalen % 9) {
+		while (indatalen % 9)
+			indatalen--;
+	}
 
-    nsamp = (indatalen / 9) * 16;
+	nsamp = (indatalen / 9) * 16;
 
 #ifndef USE_SOUNDFONTS
-    //
-    // cut tempo in half for non-instruments.
-    // this is a temp workaround until a synth system is implemented
-    //
-    if (!in->instrument)
-        nsamp = nsamp * 2;
+	//
+	// cut tempo in half for non-instruments.
+	// this is a temp workaround until a synth system is implemented
+	//
+	if (!in->instrument)
+		nsamp = nsamp * 2;
 #endif
 
-    outsize = (nsamp * sizeof (short)) + WAV_HEADER_SIZE;
-    outdata = (short *) Mem_Alloc (outsize);
-    wavdata = outdata + (WAV_HEADER_SIZE / 2);
+	outsize = (nsamp * sizeof(short)) + WAV_HEADER_SIZE;
+	outdata = (short *)Mem_Alloc(outsize);
+	wavdata = outdata + (WAV_HEADER_SIZE / 2);
 
-    Sound_CreateWavHeader ((byte *) outdata, samplerate, nsamp);
-    Sound_DecodeVADPCM (indata, wavdata, indatalen, pred, in);
+	Sound_CreateWavHeader((byte *) outdata, samplerate, nsamp);
+	Sound_DecodeVADPCM(indata, wavdata, indatalen, pred, in);
 
 #ifdef USE_SOUNDFONTS
-    sprintf (samplename, "SFX_%03d", in->id);
-    SF_AddSampleData (&soundfont, (byte *) wavdata, nsamp * 2, samplename,
-                      wavtable->loopid);
+	sprintf(samplename, "SFX_%03d", in->id);
+	SF_AddSampleData(&soundfont, (byte *) wavdata, nsamp * 2, samplename,
+			 wavtable->loopid);
 #endif
 
-    wavtable->wavsize = outsize;
-    wavtabledata[wavtable->ptrindex] = (byte *) outdata;
+	wavtable->wavsize = outsize;
+	wavtabledata[wavtable->ptrindex] = (byte *) outdata;
 }
 
 //**************************************************************
@@ -801,138 +804,141 @@ Sound_ProcessData (subpatch_t * in, wavtable_t * wavtable, int samplerate,
 //**************************************************************
 //**************************************************************
 
-static void
-Sound_ProcessSN64 (void) {
-    int32 *rover;
-    int32 *head;
-    uint ptr;
-    int i;
-    byte *sn64file;
+static void Sound_ProcessSN64(void)
+{
+	int32 *rover;
+	int32 *head;
+	uint ptr;
+	int i;
+	byte *sn64file;
 
-    head = (int32 *) (RomFile.data);
-    rover = (int32 *) (RomFile.data + RomFile.length) - 1;
+	head = (int32 *) (RomFile.data);
+	rover = (int32 *) (RomFile.data + RomFile.length) - 1;
 
-    WGen_UpdateProgress ("Processing SN64 Banks...");
+	WGen_UpdateProgress("Processing SN64 Banks...");
 
-    while (rover - head) {
-        if (*rover == ROM_SNDTITLE)
-            break;
+	while (rover - head) {
+		if (*rover == ROM_SNDTITLE)
+			break;
 
-        rover--;
-    }
+		rover--;
+	}
 
-    sn64file = (byte *) rover;
-    sn64 = (sn64_t *) sn64file;
-    ptr = sizeof (sn64_t);
+	sn64file = (byte *) rover;
+	sn64 = (sn64_t *) sn64file;
+	ptr = sizeof(sn64_t);
 
-    //
-    // sanity check
-    //
-    if (strcmp (sn64->id, "SN64"))
-        WGen_Complain ("Sound_ProcessSN64: Invalid SN64 id!");
+	//
+	// sanity check
+	//
+	if (strcmp(sn64->id, "SN64"))
+		WGen_Complain("Sound_ProcessSN64: Invalid SN64 id!");
 
-    //
-    // process header
-    //
-    sn64->game_id = WGen_Swap32 (sn64->game_id);
-    sn64->ninst = WGen_Swap32 (sn64->ninst);
-    sn64->version_id = WGen_Swap32 (sn64->version_id);
-    sn64->len1 = WGen_Swap32 (sn64->len1);
-    sn64->npatch = WGen_Swap16 (sn64->npatch);
-    sn64->patchsiz = WGen_Swap16 (sn64->patchsiz);
-    sn64->nsubpatch = WGen_Swap16 (sn64->nsubpatch);
-    sn64->subpatchsiz = WGen_Swap16 (sn64->subpatchsiz);
-    sn64->nsfx = WGen_Swap16 (sn64->nsfx);
-    sn64->sfxsiz = WGen_Swap16 (sn64->sfxsiz);
+	//
+	// process header
+	//
+	sn64->game_id = WGen_Swap32(sn64->game_id);
+	sn64->ninst = WGen_Swap32(sn64->ninst);
+	sn64->version_id = WGen_Swap32(sn64->version_id);
+	sn64->len1 = WGen_Swap32(sn64->len1);
+	sn64->npatch = WGen_Swap16(sn64->npatch);
+	sn64->patchsiz = WGen_Swap16(sn64->patchsiz);
+	sn64->nsubpatch = WGen_Swap16(sn64->nsubpatch);
+	sn64->subpatchsiz = WGen_Swap16(sn64->subpatchsiz);
+	sn64->nsfx = WGen_Swap16(sn64->nsfx);
+	sn64->sfxsiz = WGen_Swap16(sn64->sfxsiz);
 
-    //
-    // process patches
-    //
-    patches = (patch_t *) (sn64file + ptr);
-    ptr += (sn64->patchsiz * sn64->npatch) + sizeof (int);
+	//
+	// process patches
+	//
+	patches = (patch_t *) (sn64file + ptr);
+	ptr += (sn64->patchsiz * sn64->npatch) + sizeof(int);
 
-    for (i = 0; i < sn64->npatch; i++)
-        patches[i].offset = WGen_Swap16 (patches[i].offset);
+	for (i = 0; i < sn64->npatch; i++)
+		patches[i].offset = WGen_Swap16(patches[i].offset);
 
-    //
-    // process subpatches
-    //
-    subpatches = (subpatch_t *) (sn64file + ptr);
-    ptr += (sn64->subpatchsiz * sn64->nsubpatch) + sizeof (int);
+	//
+	// process subpatches
+	//
+	subpatches = (subpatch_t *) (sn64file + ptr);
+	ptr += (sn64->subpatchsiz * sn64->nsubpatch) + sizeof(int);
 
-    for (i = 0; i < sn64->nsubpatch; i++) {
-        subpatches[i].id = WGen_Swap16 (subpatches[i].id);
-        subpatches[i].attacktime = WGen_Swap16 (subpatches[i].attacktime);
-        subpatches[i].decaytime = WGen_Swap16 (subpatches[i].decaytime);
-    }
+	for (i = 0; i < sn64->nsubpatch; i++) {
+		subpatches[i].id = WGen_Swap16(subpatches[i].id);
+		subpatches[i].attacktime =
+		    WGen_Swap16(subpatches[i].attacktime);
+		subpatches[i].decaytime = WGen_Swap16(subpatches[i].decaytime);
+	}
 
-    //
-    // find where non-instruments begin
-    //
-    for (i = 0; i < sn64->npatch; i++) {
-        if (!subpatches[patches[i].offset].instrument) {
-            newbankoffset = i;
-            break;
-        }
-    }
+	//
+	// find where non-instruments begin
+	//
+	for (i = 0; i < sn64->npatch; i++) {
+		if (!subpatches[patches[i].offset].instrument) {
+			newbankoffset = i;
+			break;
+		}
+	}
 
-    //
-    // prcess sfx
-    //
-    sfx = (wavtable_t *) (sn64file + ptr);
-    ptr += (sn64->sfxsiz * sn64->nsfx);
+	//
+	// prcess sfx
+	//
+	sfx = (wavtable_t *) (sn64file + ptr);
+	ptr += (sn64->sfxsiz * sn64->nsfx);
 
-    for (i = 0; i < sn64->nsfx; i++) {
-        sfx[i].size = WGen_Swap32 (sfx[i].size);
-        sfx[i].start = WGen_Swap32 (sfx[i].start);
-        sfx[i].loopid = WGen_Swap32 (sfx[i].loopid);
-        sfx[i].pitch = WGen_Swap32 (sfx[i].pitch);
-        sfx[i].ptrindex = i;
-    }
+	for (i = 0; i < sn64->nsfx; i++) {
+		sfx[i].size = WGen_Swap32(sfx[i].size);
+		sfx[i].start = WGen_Swap32(sfx[i].start);
+		sfx[i].loopid = WGen_Swap32(sfx[i].loopid);
+		sfx[i].pitch = WGen_Swap32(sfx[i].pitch);
+		sfx[i].ptrindex = i;
+	}
 
-    wavtabledata = (cache *) Mem_Alloc (sizeof (cache) * sn64->nsfx);
+	wavtabledata = (cache *) Mem_Alloc(sizeof(cache) * sn64->nsfx);
 
-    for (i = 0; i < sn64->nsfx; i++)
-        wavtabledata[i] = NULL;
+	for (i = 0; i < sn64->nsfx; i++)
+		wavtabledata[i] = NULL;
 
-    //
-    // process loopinfo
-    //
-    loopinfo = (loopinfo_t *) (sn64file + ptr);
-    ptr += sizeof (loopinfo_t);
+	//
+	// process loopinfo
+	//
+	loopinfo = (loopinfo_t *) (sn64file + ptr);
+	ptr += sizeof(loopinfo_t);
 
-    loopinfo->ncount = WGen_Swap16 (loopinfo->ncount);
-    loopinfo->nsfx1 = WGen_Swap16 (loopinfo->nsfx1);
-    loopinfo->nsfx2 = WGen_Swap16 (loopinfo->nsfx2);
+	loopinfo->ncount = WGen_Swap16(loopinfo->ncount);
+	loopinfo->nsfx1 = WGen_Swap16(loopinfo->nsfx1);
+	loopinfo->nsfx2 = WGen_Swap16(loopinfo->nsfx2);
 
-    //
-    // skip looptable
-    //
-    looptable = (looptable_t *) (sn64file + ptr);
-    ptr += (((loopinfo->ncount + 1) << 1) * loopinfo->ncount);
+	//
+	// skip looptable
+	//
+	looptable = (looptable_t *) (sn64file + ptr);
+	ptr += (((loopinfo->ncount + 1) << 1) * loopinfo->ncount);
 
-    for (i = 0; i < loopinfo->ncount; i++) {
-        looptable[i].loopstart = WGen_Swap32 (looptable[i].loopstart);
-        looptable[i].loopend = WGen_Swap32 (looptable[i].loopend);
-    }
+	for (i = 0; i < loopinfo->ncount; i++) {
+		looptable[i].loopstart = WGen_Swap32(looptable[i].loopstart);
+		looptable[i].loopend = WGen_Swap32(looptable[i].loopend);
+	}
 
-    //
-    // process predictors
-    //
-    predictors = (predictor_t *) (sn64file + ptr);
+	//
+	// process predictors
+	//
+	predictors = (predictor_t *) (sn64file + ptr);
 
-    for (i = 0; i < sn64->nsfx; i++) {
-        int j;
+	for (i = 0; i < sn64->nsfx; i++) {
+		int j;
 
-        predictors[i].npredictors = WGen_Swap32 (predictors[i].npredictors);
-        predictors[i].order = WGen_Swap32 (predictors[i].order);
+		predictors[i].npredictors =
+		    WGen_Swap32(predictors[i].npredictors);
+		predictors[i].order = WGen_Swap32(predictors[i].order);
 
-        for (j = 0; j < 128; j++)
-            predictors[i].preds[j] = WGen_Swap16 (predictors[i].preds[j]);
-    }
+		for (j = 0; j < 128; j++)
+			predictors[i].preds[j] =
+			    WGen_Swap16(predictors[i].preds[j]);
+	}
 
-    sn64size = sizeof (sn64_t) + sn64->len1;
-    _PAD16 (sn64size);
+	sn64size = sizeof(sn64_t) + sn64->len1;
+	_PAD16(sn64size);
 }
 
 //**************************************************************
@@ -943,114 +949,118 @@ Sound_ProcessSN64 (void) {
 //**************************************************************
 //**************************************************************
 
-static void
-Sound_ProcessSSEQ (void) {
-    int32 *rover;
-    int32 *head;
-    uint ptr;
-    int i;
-    byte *sseqfile;
+static void Sound_ProcessSSEQ(void)
+{
+	int32 *rover;
+	int32 *head;
+	uint ptr;
+	int i;
+	byte *sseqfile;
 
-    WGen_UpdateProgress ("Processing SSEQ Tracks...");
+	WGen_UpdateProgress("Processing SSEQ Tracks...");
 
-    head = (int32 *) (RomFile.data);
-    rover = (int32 *) (RomFile.data + RomFile.length) - 1;
+	head = (int32 *) (RomFile.data);
+	rover = (int32 *) (RomFile.data + RomFile.length) - 1;
 
-    while (rover - head) {
-        if (*rover == ROM_SEQTITLE)
-            break;
+	while (rover - head) {
+		if (*rover == ROM_SEQTITLE)
+			break;
 
-        rover--;
-    }
+		rover--;
+	}
 
-    sseqfile = (byte *) rover;
-    sseq = (sseq_t *) sseqfile;
-    ptr = sizeof (sseq_t);
+	sseqfile = (byte *) rover;
+	sseq = (sseq_t *) sseqfile;
+	ptr = sizeof(sseq_t);
 
-    //
-    // sanity check
-    //
-    if (strcmp (sseq->id, "SSEQ"))
-        WGen_Complain ("Sound_ProcessSSEQ: Invalid SSEQ id!");
+	//
+	// sanity check
+	//
+	if (strcmp(sseq->id, "SSEQ"))
+		WGen_Complain("Sound_ProcessSSEQ: Invalid SSEQ id!");
 
-    //
-    // process header
-    //
-    sseq->entrysiz = WGen_Swap32 (sseq->entrysiz);
-    sseq->nentry = WGen_Swap32 (sseq->nentry);
-    sseq->game_id = WGen_Swap32 (sseq->game_id);
+	//
+	// process header
+	//
+	sseq->entrysiz = WGen_Swap32(sseq->entrysiz);
+	sseq->nentry = WGen_Swap32(sseq->nentry);
+	sseq->game_id = WGen_Swap32(sseq->game_id);
 
-    //
-    // process entries
-    //
-    entries = (entry_t *) (sseqfile + ptr);
-    ptr += sseq->entrysiz;
+	//
+	// process entries
+	//
+	entries = (entry_t *) (sseqfile + ptr);
+	ptr += sseq->entrysiz;
 
-    midis = Mem_Alloc (sizeof (midiheader_t) * sseq->nentry);
+	midis = Mem_Alloc(sizeof(midiheader_t) * sseq->nentry);
 
-    for (i = 0; i < (int) sseq->nentry; i++) {
-        track_t *track;
-        int j;
-        int *loopid;
-        int tptr = 0;
-        byte *data;
+	for (i = 0; i < (int)sseq->nentry; i++) {
+		track_t *track;
+		int j;
+		int *loopid;
+		int tptr = 0;
+		byte *data;
 
-        WGen_UpdateProgress ("Converting track %03d", i);
+		WGen_UpdateProgress("Converting track %03d", i);
 
-        entries[i].length = WGen_Swap32 (entries[i].length);
-        entries[i].ntrack = WGen_Swap16 (entries[i].ntrack);
-        entries[i].offset = WGen_Swap32 (entries[i].offset);
+		entries[i].length = WGen_Swap32(entries[i].length);
+		entries[i].ntrack = WGen_Swap16(entries[i].ntrack);
+		entries[i].offset = WGen_Swap32(entries[i].offset);
 
-        Sound_CreateMidiHeader (&entries[i], &midis[i]);
+		Sound_CreateMidiHeader(&entries[i], &midis[i]);
 
-        //
-        // process tracks
-        //
-        for (j = 0; j < entries[i].ntrack; j++) {
-            track = (track_t *) ((sseqfile + ptr) + tptr);
+		//
+		// process tracks
+		//
+		for (j = 0; j < entries[i].ntrack; j++) {
+			track = (track_t *) ((sseqfile + ptr) + tptr);
 
-            track->flag = WGen_Swap16 (track->flag);
-            track->id = WGen_Swap16 (track->id);
-            track->bpm = WGen_Swap16 (track->bpm);
-            track->timediv = WGen_Swap16 (track->timediv);
-            track->datalen = WGen_Swap16 (track->datalen);
-            track->loop = WGen_Swap16 (track->loop);
+			track->flag = WGen_Swap16(track->flag);
+			track->id = WGen_Swap16(track->id);
+			track->bpm = WGen_Swap16(track->bpm);
+			track->timediv = WGen_Swap16(track->timediv);
+			track->datalen = WGen_Swap16(track->datalen);
+			track->loop = WGen_Swap16(track->loop);
 
-            if (track->loop) {
-                loopid = (int *) (((sseqfile + ptr) + tptr) + sizeof (track_t));
-                data = ((sseqfile + ptr) + tptr) + sizeof (track_t) + 4;
-                *loopid = WGen_Swap32 (*loopid);
-            }
-            else
-                data = ((sseqfile + ptr) + tptr) + sizeof (track_t);
+			if (track->loop) {
+				loopid =
+				    (int *)(((sseqfile + ptr) + tptr) +
+					    sizeof(track_t));
+				data =
+				    ((sseqfile + ptr) + tptr) +
+				    sizeof(track_t) + 4;
+				*loopid = WGen_Swap32(*loopid);
+			} else
+				data =
+				    ((sseqfile + ptr) + tptr) + sizeof(track_t);
 
-            //
-            // something went off-sync somewhere...
-            //
-            if (!(track->flag & 0x100) && entries[i].ntrack > 1)
-                WGen_Complain
-                    ("Sound_ProcessSSEQ: bad track %i offset [entry %03d]\n", j,
-                     i);
+			//
+			// something went off-sync somewhere...
+			//
+			if (!(track->flag & 0x100) && entries[i].ntrack > 1)
+				WGen_Complain
+				    ("Sound_ProcessSSEQ: bad track %i offset [entry %03d]\n",
+				     j, i);
 
-            Sound_CreateMidiTrack (&midis[i], track, data, j, i,
-                                   &patches[track->id]);
+			Sound_CreateMidiTrack(&midis[i], track, data, j, i,
+					      &patches[track->id]);
 
-            tptr += (sizeof (track_t) + track->datalen);
+			tptr += (sizeof(track_t) + track->datalen);
 
-            if (track->loop)
-                tptr += 4;
-        }
+			if (track->loop)
+				tptr += 4;
+		}
 
-        ptr += entries[i].length;
-        tptr = 0;
-    }
+		ptr += entries[i].length;
+		tptr = 0;
+	}
 
-    i--;
+	i--;
 
-    sseqsize =
-        sseq->entrysiz + (entries[i].length + entries[i].offset) +
-        sizeof (sseq_t);
-    _PAD16 (sseqsize);
+	sseqsize =
+	    sseq->entrysiz + (entries[i].length + entries[i].offset) +
+	    sizeof(sseq_t);
+	_PAD16(sseqsize);
 }
 
 //**************************************************************
@@ -1059,45 +1069,46 @@ Sound_ProcessSSEQ (void) {
 //**************************************************************
 //**************************************************************
 
-void
-Sound_Setup (void) {
-    int i;
+void Sound_Setup(void)
+{
+	int i;
 
-    Sound_ProcessSN64 ();
-    Sound_ProcessSSEQ ();
+	Sound_ProcessSN64();
+	Sound_ProcessSSEQ();
 
-    sfxdata = (((byte *) sn64 + sn64size) + sseqsize);
+	sfxdata = (((byte *) sn64 + sn64size) + sseqsize);
 
 #ifdef USE_SOUNDFONTS
-    SF_Setup ();
+	SF_Setup();
 #endif
 
-    for (i = 0; i < sn64->nsfx; i++) {
-        subpatch_t *subpatch;
-        wavtable_t *wavtable;
-        int j;
+	for (i = 0; i < sn64->nsfx; i++) {
+		subpatch_t *subpatch;
+		wavtable_t *wavtable;
+		int j;
 
-        for (j = 0; j < sn64->npatch; j++) {
-            subpatch = &subpatches[patches[j].offset];
+		for (j = 0; j < sn64->npatch; j++) {
+			subpatch = &subpatches[patches[j].offset];
 
-            if (subpatch->id != i)
-                continue;
+			if (subpatch->id != i)
+				continue;
 
-            wavtable = &sfx[subpatch->id];
+			wavtable = &sfx[subpatch->id];
 
-            if (wavtabledata[wavtable->ptrindex])
-                continue;
+			if (wavtabledata[wavtable->ptrindex])
+				continue;
 
-            WGen_UpdateProgress ("Decompressing audio...");
-            Sound_ProcessData (subpatch, wavtable, 22050,
-                               &predictors[subpatch->id]);
-        }
-    }
+			WGen_UpdateProgress("Decompressing audio...");
+			Sound_ProcessData(subpatch, wavtable, 22050,
+					  &predictors[subpatch->id]);
+		}
+	}
 
 #ifdef USE_SOUNDFONTS
-    SF_AddSample (&soundfont.samples, "EOS", 0, 0, 0);
-    SF_SetupModulators ();
-    SF_CreatePresets (patches, sn64->npatch, subpatches, sn64->nsubpatch, sfx);
-    SF_FinalizeChunkSizes ();
+	SF_AddSample(&soundfont.samples, "EOS", 0, 0, 0);
+	SF_SetupModulators();
+	SF_CreatePresets(patches, sn64->npatch, subpatches, sn64->nsubpatch,
+			 sfx);
+	SF_FinalizeChunkSizes();
 #endif
 }
