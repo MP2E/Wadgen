@@ -17,7 +17,11 @@
 #include <rpcdce.h>
 #include <io.h>
 #else
+#ifdef __linux__
+#include <linux/limits.h>
+#else
 #include <limits.h>
+#endif
 #define MAX_PATH PATH_MAX
 #define ZeroMemory(a,l) memset(a, 0, l)
 #endif
@@ -27,6 +31,11 @@
 #include <ctype.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#ifdef __linux__
+#define S_IREAD S_IRUSR
+#define S_IWRITE S_IWUSR
+#define S_IEXEC S_IXUSR
+#endif
 
 #include "mem.h"
 
