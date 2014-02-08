@@ -71,7 +71,7 @@ IF(WIN32)
 ELSEIF(APPLE)
 	# set how it shows up in the Info.plist file
     SET(MACOSX_BUNDLE_INFO_STRING "Doom64 Wad Generator for Mac")
-	SET(MACOSX_BUNDLE_ICON_FILE "icon.icns")
+	SET(MACOSX_BUNDLE_ICON_FILE "res/apple/icon.icns")
     SET(MACOSX_BUNDLE_GUI_IDENTIFIER "WadGen")
 	SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${VERSION}")
     SET(MACOSX_BUNDLE_BUNDLE_NAME "WadGen")
@@ -80,10 +80,10 @@ ELSEIF(APPLE)
 	SET(MACOSX_BUNDLE_COPYRIGHT "Team Kex, 2014")
 
     # set where in the bundle to put the icns file
-	SET_SOURCE_FILES_PROPERTIES(${CMAKE_SOURCE_DIR}/icon.icns
+	SET_SOURCE_FILES_PROPERTIES(${CMAKE_SOURCE_DIR}/res/apple/icon.icns
         PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 	# include the icns file in the target
-    LIST(APPEND EXTRA_SOURCES ${CMAKE_SOURCE_DIR}/icon.icns)
+    LIST(APPEND EXTRA_SOURCES ${CMAKE_SOURCE_DIR}/res/apple/icon.icns)
 ENDIF()
 
 SET(CPACK_SOURCE_PACKAGE_FILE_NAME "wadgen-${VERSION}")
@@ -109,8 +109,7 @@ install(TARGETS wadgen
 
 # Install Content folder into the Mac OS X bundle
 install(DIRECTORY "${CMAKE_SOURCE_DIR}/Content" DESTINATION 
-    ./WadGen.app/Contents/MacOS)
-
+    WadGen.app/Contents/MacOS)
 
 #------------------------------------------------------------------------------
 # Use BundleUtilities to get all other dependencies for the application to work.
