@@ -254,7 +254,7 @@ void WGen_Process(void)
 	WGen_UpdateProgress("Writing IWAD File...");
     // MP2E: Copy filePath, sans the file itself into tempPath
     strncpy(tempPath, wgenfile.filePath,
-            ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-4 ) );
+            ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-5 ) );
 	sprintf(outFile, "%s/doom64.wad", tempPath);
 	Wad_WriteOutput(outFile);
 

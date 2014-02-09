@@ -476,7 +476,7 @@ void SF_WriteSoundFont(void)
 
     // MP2E: Copy filePath, sans the file itself into temppath
     strncpy(tempPath, wgenfile.filePath,
-            ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-4 ) );
+            ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-5 ) );
 
 	// MP2E: Makes more sense to output to the directory where the
     // ROM resides, rather than the executable
