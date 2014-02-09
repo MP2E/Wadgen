@@ -472,16 +472,9 @@ void SF_WriteSoundFont(void)
 	int handle;
 	int i;
 	path outFile;
-    path tempPath;
 
-    // MP2E: Copy filePath, sans the file itself into temppath
-    strncpy(tempPath, wgenfile.filePath,
-            ( ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-5 )
-              * sizeof(char) ) );
-
-	// MP2E: Makes more sense to output to the directory where the
-    // ROM resides, rather than the executable
-    sprintf(outFile, "%s/doomsnd.sf2", tempPath);
+    // MP2E: Use ROM directory instead of executable directory
+    sprintf(outFile, "%s/doomsnd.sf2", wgenfile.pathOnly);
 	handle = File_Open(outFile);
 
 	File_Write(handle, soundfont.RIFF, 4);

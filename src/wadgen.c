@@ -152,7 +152,6 @@ void WGen_Process(void)
 	int i = 0;
 	char name[9];
 	path outFile;
-    path tempPath;
 	md5_digest_t digest;
 
 	Rom_Open();
@@ -252,11 +251,7 @@ void WGen_Process(void)
 	Wad_AddOutputLump("ENDOFWAD", 0, NULL);
 
 	WGen_UpdateProgress("Writing IWAD File...");
-    // MP2E: Copy filePath, sans the file itself into tempPath
-    strncpy(tempPath, wgenfile.filePath,
-            ( ( strlen(wgenfile.filePath)-strlen(wgenfile.fileName)-5 )
-            * sizeof(char) ) );
-	sprintf(outFile, "%s/doom64.wad", tempPath);
+	sprintf(outFile, "%s/doom64.wad", wgenfile.pathOnly);
 	Wad_WriteOutput(outFile);
 
 	// Done

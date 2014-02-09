@@ -66,6 +66,7 @@ File_Dialog(wgenfile_t * wgenfile, const char *type, const char *title,
 	ZeroMemory(wgenfile->fileNoExt, MAX_PATH);
 	ZeroMemory(wgenfile->fileName, MAX_PATH);
 	ZeroMemory(wgenfile->basePath, MAX_PATH);
+	ZeroMemory(wgenfile->pathOnly, MAX_PATH);
 
 	sprintf(wgenfile->basePath, "%s", File_GetExePath());
 
@@ -80,12 +81,12 @@ File_Dialog(wgenfile_t * wgenfile, const char *type, const char *title,
 	if (GetOpenFileName(&ofn)) {
 		memcpy(wgenfile->fileNoExt, wgenfile->filePath, MAX_PATH);
 		memcpy(wgenfile->fileName, wgenfile->filePath, MAX_PATH);
+		memcpy(wgenfile->pathOnly, wgenfile->filePath, MAX_PATH);
 
 		File_StripExt(wgenfile->fileNoExt);
-		File_StripExt(wgenfile->fileName);
-
 		File_StripPath(wgenfile->fileName);
 
+        File_StripFile(wgenfile->pathOnly);
 		return TRUE;
 	}
 
@@ -98,18 +99,19 @@ bool File_Prepare(wgenfile_t * wgenfile, const char *filename)
 	ZeroMemory(wgenfile->fileNoExt, MAX_PATH);
 	ZeroMemory(wgenfile->fileName, MAX_PATH);
 	ZeroMemory(wgenfile->basePath, MAX_PATH);
+	ZeroMemory(wgenfile->pathOnly, MAX_PATH);
 
 	sprintf(wgenfile->basePath, "%s", File_GetExePath());
 
 	memcpy(wgenfile->filePath, filename, strlen(filename));
 	memcpy(wgenfile->fileNoExt, wgenfile->filePath, MAX_PATH);
 	memcpy(wgenfile->fileName, wgenfile->filePath, MAX_PATH);
+	memcpy(wgenfile->pathOnly, wgenfile->filePath, MAX_PATH);
 
 	File_StripExt(wgenfile->fileNoExt);
-	File_StripExt(wgenfile->fileName);
-
 	File_StripPath(wgenfile->fileName);
 
+    File_StripFile(wgenfile->pathOnly);
 	return true;
 }
 #endif
@@ -334,4 +336,28 @@ void File_StripPath(char *name)
 		name[i] = name[pos];
 
 	name[i] = '\0';
+}
+
+//**************************************************************
+//**************************************************************
+//      File_StripFile
+//**************************************************************
+//**************************************************************
+
+void File_StripFile(char *name)
+{
+	int len = 0;
+	char *pos = NULL;
+    int i;
+
+	len = strlen(name) - 1;
+
+    pos = strrchr(name, '/');
+
+	if (pos <= 0)
+		return;
+
+    for(i = (pos-name); i < len+1; i++) {
+            name[i] = '\0';
+    }
 }

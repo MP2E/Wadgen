@@ -6,6 +6,7 @@ typedef struct {
 	path fileNoExt;
 	path fileName;
 	path basePath;
+	path pathOnly;
 } wgenfile_t;
 
 extern wgenfile_t wgenfile;
@@ -22,6 +23,7 @@ int File_Open(char const *name);
 void File_SetReadOnly(char *name);
 void File_Close(int handle);
 void File_StripExt(char *name);
+void File_StripFile(char *name);
 void File_Write(int handle, void *source, int length);
 int File_Read(char const *name, cache * buffer);
 bool File_Poke(const char *file);
