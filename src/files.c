@@ -350,14 +350,17 @@ void File_StripFile(char *name)
 	char *pos = NULL;
     int i;
 
-	len = strlen(name) - 1;
+	len = strlen(name);
 
-    pos = strrchr(name, '/');
+    pos = strrchr(name, ASCII_BACKSLASH);
 
-	if (pos <= 0)
-		return;
+	if (pos == NULL)
+        pos = strrchr(name, ASCII_SLASH);
 
-    for(i = (pos-name); i < len+1; i++) {
+    if (pos == NULL)
+        return;
+
+    for(i = (strlen(name)-strlen(pos)); i < len+1; i++) {
             name[i] = '\0';
     }
 }
